@@ -43,10 +43,31 @@ Things to prepare:
 - your notebook computer & charger
 
 Deadline of homework:
-- email to any tutor before your tutorial 1 begins
+- email to any tutor before your tutorial 1 section begins
 
 ## Tutorial 1 - GPIO
-Please return after all tutorial 0 ends
+Syllabus(basic):
+- Fundamental Program Structure
+- GPIO Config & i/o
+- LED control
+- Pneumatic control
+- Button
+- Software debouncing
+- Buzzer
+
+Syllabus(extra):
+- GPIO Mode
+- EXTI & NVIC
+
+Things to prepare:
+- download Keil
+- download STM Flash Loader
+- ensure your notebook has a functional usb port / usb convertor
+- your notebook & charger
+
+Deadline of homework:
+- give a demonstration to a software tutor @ 3007 before your tutorial 2 section begins
+- email to Emmett (yhyim@ust.hk) before your tutorial 2 section begins
 
 ## Tutorial 2 - TIMER
 Please return after all tutorial 1 ends
@@ -56,12 +77,12 @@ Please return after all tutorial 1 ends
 ### Contact
 | Tutor | Email |
 | :---: | :---: |
-| Emmett | yhyim@ust.hk |
-| Ryusuke | rsugimoto@ust.hk |
-| Christopher | pkcwongab@ust.hk |
-| Peter | hntse@ust.hk |
-| Dipsy | ycwongal@ust.hk |
-| Avin | sktse@ust.hk |
-| David | chmakac@ust.hk |
-| Pang | hwpang@ust.hk |
-| Kelly | kyyiuac@ust.hk |
+| Emmett Yim | yhyim@ust.hk |
+| Ryusuke Sugimoto | rsugimoto@ust.hk |
+| Christopher Wong  | pkcwongab@ust.hk |
+| Peter Tse | hntse@ust.hk |
+| Dipsy Wong | ycwongal@ust.hk |
+| Avin Tse | sktse@ust.hk |
+| David Mak | chmakac@ust.hk |
+| H.W. Pang | hwpang@ust.hk |
+| Kelly Yiu | kyyiuac@ust.hk |
