@@ -9,6 +9,7 @@
 * Go to ```HKUST-Robotics-Team-Software-Tutorial-2017```
 * Select ```ustrobo17_internal.7z``` and download
 * Extract at suitable location
+---
 
 ## Keil
 
@@ -48,6 +49,7 @@
 * All the ```.c``` and ```.h``` files linked to that project should show up on the left hand side of the IDE
 * Press ```F7``` or the compile button to test your environment
 * ```Cross your fingers``` as you wait for it to finish compiling without errors. If you get a few warnings, you can ignore them for now
+---
 
 ## STM Flash Loader
 
@@ -68,6 +70,7 @@
 * Extract it and open the file
 * Run the installation file ```flash_loader_demo_v2.8.0.exe```
 * Finish the installation
+---
 
 ## Remarks
 
