@@ -25,5 +25,4 @@ Bonus:
  - when LED flashing is toggled on, BUTTON1 and BUTTON3 will perform no function
 ```
 #### -Submission
-* Demonstration to software tutor @ 3007 before your tutorial 2 begins
-* Email your main.c to Emmett (yhyim@ust.hk) before your tutorial 2 begins
+* Demonstration to software tutor @ lab3007 CYT before your tutorial 2 begins
