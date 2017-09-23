@@ -66,8 +66,7 @@ Things to prepare:
 - your notebook & charger
 
 Deadline of homework:
-- demonstrate to a software tutor @ 3007 before your tutorial 2 section begins
-- email to Emmett (yhyim@ust.hk) before your tutorial 2 section begins
+- demonstrate with a circuit board to a software tutor @ lab3007 CYT before your tutorial 2 section begins
 
 ## Tutorial 2 - TIMER
 Please return after all tutorial 1 ends
