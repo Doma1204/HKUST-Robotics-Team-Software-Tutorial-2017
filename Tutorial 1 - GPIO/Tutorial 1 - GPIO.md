@@ -104,7 +104,7 @@ typedef enum
   GPIO_Mode_AF_PP = 0x18
 }GPIOMode_TypeDef;
 ```
-* For input, use ``` GPIO_Mode_IPU ```.
+* For input, use ``` GPIO_Mode_IPU ``` / ```GPIO_Mode_IPD```.
 * For output, use ``` GPIO_Mode_Out_PP ```.
 
  Example:
