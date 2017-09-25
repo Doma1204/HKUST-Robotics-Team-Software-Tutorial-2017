@@ -1,6 +1,6 @@
 # Tutorial 1 - GPIO
 
-Arthur: Emmett Yim<br>
+Author: Emmett Yim<br>
 Contact: yhyim@ust.hk
 
 ---
@@ -204,6 +204,15 @@ Construct a program that:
 -leds will take turns to light up
  [LED1 on]>[LED2 on]>[LED3 on]>[LED1 on]>[LED2 on]>...
 ```
+#### Remark : update the leds.h file if needed
+```C
+//inside leds.c > led_init()
+//   change
+RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOA,ENABLE);
+//   to
+RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOA,ENABLE);
+```
+
 ---
 ### -Pneumatic control-
 #### -Initialization
@@ -289,6 +298,10 @@ u8 input = read_button(BUTTON1);
    [LED1 on]->[LED2 on]->[LED3 on]->[LED1 on]->[LED2 on]->...
  - upon releasing buttons, the previous procedue stops and only one led remains to be on
 ```
+
+#### Remark:
+* Include the "button.h" header file in "main.h"
+
 ---
 ### -Software debouncing-
 #### -Definition
