@@ -74,5 +74,5 @@
 
 ## Remarks
 
-* There would not be technical support for OS other than Windows
+* There will not be technical support for OS other than Windows
 * You may contact ```Emmett(yhyim), Ryusuke(rsugimoto), Pang(hwpang) or Christopher(pkwongac)``` if you counter any problem on setting up your programming environment
