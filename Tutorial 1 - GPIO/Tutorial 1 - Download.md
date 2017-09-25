@@ -27,7 +27,7 @@
 * When asked for ```Name``` and ```Company```, input relevant imformation because it will show up on all of your project files and hopefully you don't want others to know you as **Snoop Dogg** for the rest of the year because you thought it was funny
 * After installation, ```Pack Manager``` should open up (if it doesn't just run Keil)
 * Make sure you're connected to internet and let the pack manager update, to show supported main boards of various manufacturers
-* Find the ```STM32F1xx``` board and click install
+* Find the ```STM32F10x``` board and click install
 * Close pack manager and if uVision opens up, close it too
 
 ### Step 3: Installing the license
