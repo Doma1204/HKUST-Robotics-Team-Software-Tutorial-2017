@@ -32,12 +32,12 @@
 
 ### Step 3: Installing the license
 
-* Download the keygen/crack from http://www.mediafire.com/file/m3tb8lcd3teb72g/blusukan.rar
+* Download the file from http://www.mediafire.com/file/m3tb8lcd3teb72g/blusukan.rar
 * Extract it with an appropriate software (WinRAR or 7Zip are great)
 * Run Keil uVision5 as Administrator. Right click the icon -> ```Run As Administrator```
 * Go to ```File -> License Management...```
 * Copy the ```CID```
-* **MUTE your speaker** and run the keygen executable
+* **MUTE your speaker** and run the executable program
 * Paste your ```CID``` in the field and select ```ARM``` under target. Select ```Prof. Developers Kit/RealView MDK``` and click ```Generate```
 * Copy your license key
 * Return to ```License Management``` and paste your license id in the field for ```New License ID``` and click ```Add LIC```
