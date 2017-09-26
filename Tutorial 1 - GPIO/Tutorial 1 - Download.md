@@ -30,20 +30,7 @@
 * Find the ```STM32F10x``` board and click install
 * Close pack manager and if uVision opens up, close it too
 
-### Step 3: Installing the license
-
-* Download the file from http://www.mediafire.com/file/m3tb8lcd3teb72g/blusukan.rar
-* Extract it with an appropriate software (WinRAR or 7Zip are great)
-* Run Keil uVision5 as Administrator. Right click the icon -> ```Run As Administrator```
-* Go to ```File -> License Management...```
-* Copy the ```CID```
-* **MUTE your speaker** and run the executable program
-* Paste your ```CID``` in the field and select ```ARM``` under target. Select ```Prof. Developers Kit/RealView MDK``` and click ```Generate```
-* Copy your license key
-* Return to ```License Management``` and paste your license id in the field for ```New License ID``` and click ```Add LIC```
-* Make sure your product and license id updates
-
-### Step 4: Opening Keil Projects
+### Step 3: Opening Keil Projects
 * Download ```ustrobo17_internal```
 * Find the file with ```.uvprojx``` format and open it with Keil
 * All the ```.c``` and ```.h``` files linked to that project should show up on the left hand side of the IDE
