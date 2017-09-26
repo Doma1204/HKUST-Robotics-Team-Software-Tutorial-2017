@@ -90,7 +90,7 @@ Try to replace ```int, long, long long, float, double``` for embedded system pro
 ```C
 void gpio_init(GPIO_ID gpio_id, GPIOMode_TypeDef gpio_mode);
 ```
-```gpio_id``` indicates which GPIO to be initialized; ```gpio_mode``` indicates it is input or output
+```gpio_id``` indicates which GPIO to be initialized; ```gpio_mode``` indicates it is input / output
 
 * Definition of GPIO_ID
 ```C
@@ -114,10 +114,10 @@ typedef enum
   GPIO_Mode_AF_PP = 0x18
 }GPIOMode_TypeDef;
 ```
-* For input, use ``` GPIO_Mode_IPU ``` / ```GPIO_Mode_IPD``` depending on the hareware connection.
-* For output, use ``` GPIO_Mode_Out_PP ```.
-
- Example:
+ For input, use ``` GPIO_Mode_IPU ``` / ```GPIO_Mode_IPD``` depending on the hareware connection.<br>
+ For output, use ``` GPIO_Mode_Out_PP ```.
+ 
+* Example:
 ```C
 //***GPIO init***
 //input
@@ -133,13 +133,14 @@ gpio_init(GPIO4,GPIO_Mode_Out_PP);
 ```
 
 #### -Read GPIO Input
- In **library>gpio.h**, function prototype of **gpio_read** can be found:
+ In **library>gpio.h**, the following can be found:
+* Function prototype
 ```C
 u8 gpio_read(GPIO_ID gpio_id);
 ```
 ```gpio_id``` indicates which GPIO to be read
 
- Example:
+* Example:
 ```C
 //capturing the input(1 for high, 0 for low) from GPIO1
 u8 input = gpio_read(GPIO1);
@@ -164,7 +165,7 @@ typedef enum
 * ```Bit_RESET``` means low
 * ```Bit_SET``` means high
 
-Example:
+* Example:
 ```C
 //set GPIO1 to high
 gpio_write(GPIO1,Bit_SET);
@@ -196,7 +197,8 @@ typedef enum{
    LED3
 }LED_ID;
 ```
- Example:
+LED1 labelled as A1; LED2 labelled as B1; LED3 labelled as C;
+* Example:
 ```C
 //switch on led 1
 led_on(LED1);
@@ -204,13 +206,13 @@ led_on(LED1);
 
 #### -Led off
  In **library>leds.h**, the following can be found:
- * Function prototype
+* Function prototype
 ```C
 void led_off(LED_ID id);
 ```
 ```id``` indicates which led to be switched off
 
- Example:
+* Example:
 ```C
 //switch off led 1
 led_off(LED1);
@@ -263,7 +265,7 @@ typedef enum{
    PNEUMATIC4
 }PNEUMATIC_ID;
 ```
- Example:
+* Example:
 ```C
 //set bit
 pneumatic_control(PNEUMATIC1,1);
@@ -295,7 +297,7 @@ typedef enum{
    BUTTON3
 }BUTTON_ID;
 ```
- Example:
+* Example:
 ```C
 u8 pressed = read_button(BUTTON1);
 ```
@@ -416,11 +418,11 @@ There are four parts:
 
 #### -GPIO port & GPIO pin
 There are **4 peripherals** (GPIOA,GPIOB,GPIOC,GPIOD), each would have 16 pins(from 0 to 15) maximum.<br>
-GPIO1 in this case is assigned to ```PA13```,where A means GPIOA and 13 meand Pin13<br>
-Therefore, we set ```GPIO_Pin = GPIO_Pin_13``` and initialize it as ```GPIO_Init(GPIOA, &GPIO_InitStructure);```
+GPIO1 in this case is assigned to ```PA13```,where A means GPIOA and 13 means Pin13<br>
+Therefore, we set ```GPIO_Pin = GPIO_Pin_13``` and initialize it with ```GPIO_Init(GPIOA, &GPIO_InitStructure);```
 
 #### -Peripheral clock
-Each GPIO port has its own peripheral clock for its own timing.<br>
+Each GPIOx has its own peripheral clock for its own timing purpose.<br>
 ```APB2``` means it is a high speed peripheral clock(72MHz, as fast as the MCU frequency).
 
 #### -GPIO_Mode
@@ -464,7 +466,7 @@ Hardware connection:<br>
 ![outputs ```VCC``` when GPIO is set to ```high```; ```GND``` when GPIO is set to ```low```](https://i.imgur.com/UerwY9k.png)
 
 #### -GPIO speed
-GPIO speed is the maximum ```SET``` or ```RESET``` access you can make every second.<br>
+GPIO speed is the maximum ```SET``` / ```RESET``` access you can make every second.<br>
 Normally, it is set to its maximum supported speed by hardware : ``` GPIO_Speed_50MHz```<br>
 ```C
 typedef enum
