@@ -133,7 +133,7 @@ u8 gpio_read(GPIO_ID gpio_id);
 u8 input = gpio_read(GPIO1);
 ```
 
-#### -Read GPIO Output
+#### -Write GPIO Output
  In **library>gpio.h**, the following can be found:
 * Function prototype:
 ```C
