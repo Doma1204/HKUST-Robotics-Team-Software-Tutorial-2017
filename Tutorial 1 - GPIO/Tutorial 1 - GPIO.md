@@ -51,7 +51,7 @@ int main()
 	 if(ticks % 50 == 5)
 	 {
 	    //e.g. button checking
-	    //reading input usually need to be updated more frequently
+	    //input reading usually need to be updated more frequently
 	 }
 	 
 	 if(ticks % 100 == 11)
