@@ -33,7 +33,7 @@ int main()
          //updating the value stored in ticks
 	 ticks=get_ticks();
 	 
-	 //print ticks on tft every 1000ms
+	 //print ticks on tft every 100ms
 	 if(ticks % 100 == 0)
 	 {
 	    tft_clear_line(1);
