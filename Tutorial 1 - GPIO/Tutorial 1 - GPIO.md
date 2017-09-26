@@ -90,6 +90,8 @@ Try to replace ```int, long, long long, float, double``` for embedded system pro
 ```C
 void gpio_init(GPIO_ID gpio_id, GPIOMode_TypeDef gpio_mode);
 ```
+```gpio_id``` indicates which GPIO to be initialized; ```gpio_mode``` indicates it is input or output
+
 * Definition of GPIO_ID
 ```C
 typedef enum {
@@ -135,6 +137,8 @@ gpio_init(GPIO4,GPIO_Mode_Out_PP);
 ```C
 u8 gpio_read(GPIO_ID gpio_id);
 ```
+```gpio_id``` indicates which GPIO to be read
+
  Example:
 ```C
 //capturing the input(1 for high, 0 for low) from GPIO1
@@ -147,6 +151,8 @@ u8 input = gpio_read(GPIO1);
 ```C
 void gpio_write(GPIO_ID gpio_id, BitAction BitVal);
 ```
+```gpio_id``` indicates which GPIO to be written; ```BitVal``` indicates it is written as digital high / low
+
  In **stm32f10x_std>stm32f10x_gpio.h**, the following can be found:
 * Definition of BitAction:
 ```C
@@ -180,6 +186,8 @@ void led_init(void);
 ```C
 void led_on(LED_ID id);
 ```
+```id``` indicates which led to be switched on
+
 * Definition of LED_ID
 ```C
 typedef enum{
@@ -200,6 +208,8 @@ led_on(LED1);
 ```C
 void led_off(LED_ID id);
 ```
+```id``` indicates which led to be switched off
+
  Example:
 ```C
 //switch off led 1
@@ -239,6 +249,8 @@ void pneumatic_init(void);
 ```C
 void pneumatic_control(PNEUMATIC_ID id, u8 state);
 ```
+```id``` indicates which pneumatic port to be controlled; ```state``` indicates it is digital high / low
+
 #### -Remark:
 ```state``` can either be ```1``` or ```0```
 
@@ -273,6 +285,8 @@ void button_init(void);
 ```C
 u8 read_button(BUTTON_ID id);
 ```
+```id``` indicates which button's state to be read
+
 * Definition of BUTTON_ID
 ```C
 typedef enum{
@@ -330,13 +344,15 @@ if(ticks % 50 == 1)
    //reset debounce if button is not pressed
    if(read_button(BUTTON1) && debounce)
       debounce = 0;
+   
    //set debounce if button is initially pressed
    if(!read_button(BUTTON1) && !debounce)
       debounce = 1;
+   
    //handle button triggered event after debouncing
    else if(!read_button(BUTTON1) && debounce)
    {
-      //...
+      //button triggered program here...
    }
 }
 ```
