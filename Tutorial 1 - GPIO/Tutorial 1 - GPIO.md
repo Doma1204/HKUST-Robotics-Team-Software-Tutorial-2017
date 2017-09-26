@@ -18,38 +18,46 @@ Contact: yhyim@ust.hk
 
 int main()
 {
-   //initialization
-   ticks_init();
-   tft_init(0,BLUE, WHITE, RED);
+   //initialization, order matters
+   ticks_init();
+   led_init();
    
    //variables
-   uint32_t ticks = 0;	
+   uint32_t ticks = 0;
+   uint8_t ledOn = 1;//used as a flag to store state of LED1
+   
    //an infinite loop
-      while(1)
-      {
-      //regulating time interval
+   while(1)
+   {
+      //regulates time interval to every ms
       if(get_ticks() != ticks)
       {
-         //updating the value stored in ticks
-	 ticks=get_ticks();
+         //get_ticks() returns the time past after ticks_init() is called, in ms
+	 //updating the value stored in ticks
+	 ticks = get_ticks();
 	 
-	 //print ticks on tft every 100ms
+	 //toggle led1 every 100ms
+	 //ticks % PERIOD == REMAINDER
 	 if(ticks % 100 == 0)
 	 {
-	    tft_clear_line(1);
-	    tft_prints(1,1,"%d",ticks/100%10);
-	    tft_update();
+	    if(ledOn)
+	       led_on(LED1);
+	    else
+	       led_off(LED1);
+	    ledOn = !ledOn;
 	 }
 	 
 	 //some other tasks
-	 if(ticks % 100 == 5)
+	 if(ticks % 50 == 5)
 	 {
-	    //...
+	    //e.g. button checking
+	    //reading input usually need to be updated more frequently
 	 }
 	 
 	 if(ticks % 100 == 11)
 	 {
-	    //...
+	    //e.g. buzzer control
+	    //output can be updated less frequently to save computation power and distinguishable for human
 	 }
 	 
 	 if(ticks % 25 == 19)
@@ -111,8 +119,8 @@ typedef enum
 ```C
 //***GPIO init***
 //input
-gpio_init(GPIO1,GPIO_Mode_IPD);
-gpio_init(GPIO2,GPIO_Mode_IPD);
+gpio_init(GPIO1,GPIO_Mode_IPU);
+gpio_init(GPIO2,GPIO_Mode_IPU);
 gpio_init(GPIO3,GPIO_Mode_IPD);
 gpio_init(GPIO4,GPIO_Mode_IPD);
 //output
@@ -201,16 +209,19 @@ led_off(LED1);
 #### ***Classwork***
 ```
 Construct a program that:
--leds will take turns to light up
+ - leds will take turns to light up
  [LED1 on]>[LED2 on]>[LED3 on]>[LED1 on]>[LED2 on]>...
+Reminder:
+ - call led_init()
+ - the order of init function matters 
 ```
-#### Remark : update the leds.h file if needed
+#### Remark : update the leds.c file if needed
 ```C
 //inside leds.c > led_init()
 //   change
-RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOA,ENABLE);
+RCC_APB2PeriphClockCmd(   RCC_APB2Periph_GPIOB   |RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOA,ENABLE);
 //   to
-RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOA,ENABLE);
+RCC_APB2PeriphClockCmd(   RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD   |RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOA,ENABLE);
 ```
 
 ---
@@ -272,9 +283,11 @@ typedef enum{
 ```
  Example:
 ```C
-u8 input = read_button(BUTTON1);
+u8 pressed = read_button(BUTTON1);
 ```
-#### -Remark: ```input``` will be ```0``` when the button is pressed, and vise versa.
+#### -Remark:
+```input``` will be ```0``` when the button is pressed, and vise versa,<br>
+because there is a **pull up resistor** inside MCU and ```GPIO_Mode``` is set to ```IPU```
 
 #### ***Classwork***
 ```
@@ -297,10 +310,11 @@ u8 input = read_button(BUTTON1);
  - leds will take turns to light up when any button is pressed
    [LED1 on]->[LED2 on]->[LED3 on]->[LED1 on]->[LED2 on]->...
  - upon releasing buttons, the previous procedue stops and only one led remains to be on
+ 
+Reminder:
+ - call button_init()
+ - include the "button.h" header file in "main.h" if haven't
 ```
-
-#### Remark:
-* Include the "button.h" header file in "main.h"
 
 ---
 ### -Software debouncing-
@@ -360,8 +374,40 @@ void buzzer_off(void);
 
 ## Extra
 ---
-### -GPIO Mode-
+### -GPIO Setup-
 
+Taking the gpio_init for GPIO1 as an example:
+```C
+//GPIO setup for GPIO1(PA13)
+GPIO_InitTypeDef GPIO_InitStructure;
+//enable the peripheral clock for GPIOA
+RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+//set the pin as GPIO_Pin_13
+GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_13;
+//set the gpio mode to input pull up
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+//set the speed as 50MHz
+GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+//initialize it to gpio port GPIOA
+GPIO_Init(GPIOA, &GPIO_InitStructure);
+```
+There are four parts:
+1. GPIO port - GPIOx
+2. GPIO pin - GPIO_Pin_x
+3. Peripheral clock - RCC_APB2Periph_GPIOx
+4. GPIO Mode
+5. GPIO speed - GPIO_Speed_50MHz(set as this normally)
+
+#### -GPIO port & GPIO pin
+There are **4 peripherals** (GPIOA,GPIOB,GPIOC,GPIOD), each would have 16 pins(from 0 to 15) maximum.<br>
+GPIO1 in this case is assigned to ```PA13```,where A means GPIOA and 13 meand Pin13<br>
+Therefore, we set ```GPIO_Pin = GPIO_Pin_13``` and initialize it as ```GPIO_Init(GPIOA, &GPIO_InitStructure);```
+
+#### -Peripheral clock
+Each GPIO port has its own peripheral clock for its own timing.<br>
+```APB2``` means it is a high speed peripheral clock(72MHz, as fast as the MCU frequency).
+
+#### -GPIO_Mode
 Among
 ```C
 typedef enum
@@ -400,6 +446,18 @@ only ```GPIO_Mode_IPD```, ```GPIO_Mode_IPU```, ```GPIO_Mode_Out_OD``` and ```GPI
 
 Hardware connection:<br>
 ![outputs ```VCC``` when GPIO is set to ```high```; ```GND``` when GPIO is set to ```low```](https://i.imgur.com/UerwY9k.png)
+
+#### -GPIO speed
+GPIO speed is the maximum ```SET``` or ```RESET``` access you can make every second.<br>
+Normally, it is set to its maximum supported speed by hardware : ``` GPIO_Speed_50MHz```<br>
+```C
+typedef enum
+{ 
+  GPIO_Speed_10MHz = 1,
+  GPIO_Speed_2MHz, 
+  GPIO_Speed_50MHz
+}GPIOSpeed_TypeDef;
+```
 
 ---
 ### -EXTI & NVIC-
@@ -443,9 +501,13 @@ NVIC_Init(&NVIC_InitStructure);
 
 #### -IRQ Handler example
 ```C
+//checking the flag for external interupt for line 13
 if ( EXTI_GetITStatus(EXTI_Line13) != RESET )
 {
+   //your code here
    //...
+   
+   //clear the flag
    EXTI_ClearITPendingBit(EXTI_Line13);
 }
 ```
