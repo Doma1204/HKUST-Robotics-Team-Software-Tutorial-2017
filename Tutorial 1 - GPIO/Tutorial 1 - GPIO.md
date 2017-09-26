@@ -11,7 +11,8 @@ Contact: yhyim@ust.hk
 ---
 ### -Fundamental Program Structure-
 1. Double click **ustrobo17_internal>ustrobo17_internal.uvprojx**
-2. Open **user>main.c**
+2. Open **user>main.c** on the left
+3. During this tutorial, only change the program in main.c
 ```C
 //including header files
 #include "main.h"
