@@ -312,21 +312,21 @@ because there is a **pull up resistor** inside MCU and ```GPIO_Mode``` is set to
  - LEDx will light up only when BUTTONx is pressed
 
 2. Construct a program that:
- - LEDx is toggled when BUTTONx is pressed
+ - LEDx will light up only when BUTTONx is pressed
+ - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed
 
 3. Construct a program that:
  - LEDx will light up only when BUTTONx is pressed
- - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed.
+ - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed
+ - LEDx will flash once per 300*x ms when BUTTONi is pressed (flashing = half of the time as on & half of the time as off)
 
-4. Construct a program that:
- - LEDx will light up only when BUTTONx is pressed
- - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed.
- - LEDx will flash once per 300*x ms when BUTTONi is pressed.
-
-5.Construct a program that:
+4.Construct a program that:
  - leds will light up in sequence while any button is held on<br>
    [LED1 on]->[LED2 on]->[LED3 on]->[LED1 on]->[LED2 on]->...
  - upon releasing buttons, the previous procedue stops and only the selected led remains to be on
+
+5. Construct a program that:
+ - LEDx is toggled when BUTTONx is pressed
  
 Reminder:
  - call button_init()
@@ -385,8 +385,8 @@ void buzzer_off(void);
 ```
 1. Construct a program that:
  - Include "buzzer.h" in "main.h"
- - BUZZER will beep once per 1000*x ms when BUTTONx is pressed.
- - If multiple buttons are pressed, the BUZZER will only beep at the corresponding rate of the first button pressed.
+ - BUZZER will beep once per 1000*x ms when BUTTONx is pressed (beeping = half of the time as on & half of the time as off)
+ - If multiple buttons are pressed, the BUZZER will only beep at the corresponding rate of the first button pressed
 ```
 
 ---
