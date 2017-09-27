@@ -385,7 +385,7 @@ void buzzer_off(void);
 ```
 1. Construct a program that:
  - Include "buzzer.h" in "main.h"
- - BUZZER will beep once per 1000*i ms when BUTTONi is pressed.
+ - BUZZER will beep once per 1000*x ms when BUTTONx is pressed.
  - If multiple buttons are pressed, the BUZZER will only beep at the corresponding rate of the first button pressed.
 ```
 
