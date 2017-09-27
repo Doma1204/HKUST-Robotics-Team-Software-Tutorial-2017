@@ -73,16 +73,16 @@ int main()
 #### -Remark:
 Try to replace ```int, long, long long, float, double``` for embedded system programming with the followings:
 
-| Full name | Short form |
-| :---: | :---: |
-| uint8_t | u8 |
-| uint16_t | u16 |
-| uint32_t | u32 |
-| int8_t | s8 |
-| int16_t | s16 |
-| int32_t | s32 |
-| *uint64_t* | *u64* |
-| *int64_t* | *s64* |
+| Full name | Short form | Meaning |
+| :---: | :---: | :---: |
+| uint8_t | u8 | unsigned 8 bits |
+| uint16_t | u16 | unsigned 16 bits |
+| uint32_t | u32 | unsigned 32 bits |
+| int8_t | s8 | signed 8 bits |
+| int16_t | s16 | signed 16 bits |
+| int32_t | s32 | signed 32 bits |
+| *uint64_t* | *u64* | unsigned 64 bits |
+| *int64_t* | *s64* | signed 64 bits |
 ---
 ### -GPIO Configuration and i/o-
 #### -Initialization
@@ -143,7 +143,7 @@ u8 gpio_read(GPIO_ID gpio_id);
 
 * Example:
 ```C
-//capturing the input(1 for high, 0 for low) from GPIO1
+//capturing the input(1 for high, 0 for low) from GPIO1 if IPD is set
 u8 input = gpio_read(GPIO1);
 ```
 
@@ -222,7 +222,7 @@ led_off(LED1);
 #### ***Classwork***
 ```
 Construct a program that:
- - leds will take turns to light up
+ - leds will light up in sequence<br>
  [LED1 on]>[LED2 on]>[LED3 on]>[LED1 on]>[LED2 on]>...
 Reminder:
  - call led_init()
@@ -309,24 +309,24 @@ because there is a **pull up resistor** inside MCU and ```GPIO_Mode``` is set to
 #### ***Classwork***
 ```
 1. Construct a program that:
- - LEDi will light up only when BUTTONi is pressed
+ - LEDx will light up only when BUTTONx is pressed
 
 2. Construct a program that:
- - LEDi is toggled when BUTTONi is pressed
+ - LEDx is toggled when BUTTONx is pressed
 
 3. Construct a program that:
- - LEDi will light up only when BUTTONi is pressed
- - If multiple buttons are pressed, only LEDi will light up where BUTTONi is the first button pressed.
+ - LEDx will light up only when BUTTONx is pressed
+ - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed.
 
 4. Construct a program that:
- - LEDi will light up only when BUTTONi is pressed
- - If multiple buttons are pressed, only LEDi will light up where BUTTONi is the first button pressed.
- - LEDi will flash once per 300*i ms when BUTTONi is pressed.
+ - LEDx will light up only when BUTTONx is pressed
+ - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed.
+ - LEDx will flash once per 300*x ms when BUTTONi is pressed.
 
 5.Construct a program that:
- - leds will take turns to light up when any button is pressed
+ - leds will light up in sequence while any button is held on<br>
    [LED1 on]->[LED2 on]->[LED3 on]->[LED1 on]->[LED2 on]->...
- - upon releasing buttons, the previous procedue stops and only one led remains to be on
+ - upon releasing buttons, the previous procedue stops and only the selected led remains to be on
  
 Reminder:
  - call button_init()
@@ -486,7 +486,9 @@ typedef enum
 #### -Definition of EXTI
 **EXTI** means **external interrupt**.<br>
 Interrupt is a prioritized event that would be handled first at any time, while temporarily pausing the current event until the interrupt is finished.<br>
-External interrupt is an interrupt triggered externally, for example by gpio input.
+External interrupt is an interrupt triggered by an external device through GPIO, for example the input from a limit switch.<br>
+**Advantage** : does not need to perform GPIO input checking with gpio_read frequently<br>
+**Disavantage** : interrupt will happened for multiple times if there is input bouncing as EXTI has no hardware debouncing while software debouncing is also not applicable.
 
 #### -EXTI setup example
 ```C
