@@ -316,9 +316,8 @@ because there is a **pull up resistor** inside MCU and ```GPIO_Mode``` is set to
  - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed
 
 3. Construct a program that:
- - LEDx will light up only when BUTTONx is pressed
+ - LEDx will flash once per 300*x ms when BUTTONi is held on (flashing = half of the time as on & half of the time as off)
  - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed
- - LEDx will flash once per 300*x ms when BUTTONi is pressed (flashing = half of the time as on & half of the time as off)
 
 4.Construct a program that:
  - leds will light up in sequence while any button is held on<br>
