@@ -27,7 +27,10 @@
 * When asked for ```Name``` and ```Company```, input relevant imformation because it will show up on all of your project files and hopefully you don't want others to know you as **Snoop Dogg** for the rest of the year because you thought it was funny
 * After installation, ```Pack Manager``` should open up (if it doesn't just run Keil)
 * Make sure you're connected to internet and let the pack manager update, to show supported main boards of various manufacturers
-* Find the ```STM32F10x``` board and click install
+* Wait until the loading bar at the bottom right corner to finish
+* Select ```Devices``` at the top right corner and type **stm32f1** under ```Search:```
+* Click once on ```STM32F1 Serices```
+* Look for ```Keil::STM32F1xxDFP``` and click ```install``` to its right
 * Close pack manager and if uVision opens up, close it too
 
 ### Step 3: Opening Keil Projects
@@ -49,8 +52,11 @@
 * Go to your email account and look for the email with the title ```SOFTWARE DOWNLOAD – EMAIL CONFIRMATION```
 * Open the email and click the link
 * If download doesn't begin automatically,
-* Scroll down and click ```Get Software```
-* Click ```ACCEPT``` of the pop-up ```License Agreement```
+  * Scroll down and click ```Get Software```
+  * Click ```ACCEPT``` of the pop-up ```License Agreement```
+* If the ```Get Software``` is not shown
+  * Complete the registration
+  * Login to the download page, the button should now be shown
 
 ### Step 2: Installing STM32 Flash loader demonstrator
 
