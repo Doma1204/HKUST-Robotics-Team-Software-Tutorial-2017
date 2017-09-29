@@ -313,11 +313,11 @@ because there is a **pull up resistor** inside MCU and ```GPIO_Mode``` is set to
 
 2. Construct a program that:
  - LEDx will light up only when BUTTONx is pressed
- - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed
+ - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button (that is not released) pressed
 
 3. Construct a program that:
  - LEDx will flash once per 300*x ms when BUTTONi is held on (flashing = half of the time as on & half of the time as off)
- - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button pressed
+ - If multiple buttons are pressed, only LEDx will light up where BUTTONx is the first button (that is not released) pressed
 
 4.Construct a program that:
  - leds will light up in sequence while any button is held on<br>
@@ -385,7 +385,7 @@ void buzzer_off(void);
 1. Construct a program that:
  - Include "buzzer.h" in "main.h"
  - BUZZER will beep once per 1000*x ms when BUTTONx is pressed (beeping = half of the time as on & half of the time as off)
- - If multiple buttons are pressed, the BUZZER will only beep at the corresponding rate of the first button pressed
+ - If multiple buttons are pressed, the BUZZER will only beep at the corresponding rate of the first button (that is not released) pressed
 ```
 
 ---
