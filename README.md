@@ -68,8 +68,12 @@ Things to prepare:
 Deadline of homework:
 - demonstrate with a circuit board to a software tutor @ lab3007 CYT before your tutorial 2 section begins
 
-## Tutorial 2 - TIMER
-Please return after all tutorial 1 ends
+## Tutorial 2 - Timers & PWM
+
+- Introduction to PWM singals
+- STM32 timer configuration
+- Servo PWM control
+- Motor PWM control
 
 ---
 
