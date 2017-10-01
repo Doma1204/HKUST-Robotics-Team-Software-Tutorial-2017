@@ -69,18 +69,20 @@ Deadline of homework:
 - demonstrate with a main board to a software tutor @ lab3007 CYT before your tutorial 2 section begins
 
 ## Tutorial 2 - Timers & PWM
-Syllabus(basic):
+
+Syllabus
 - Introduction to PWM singals
 - STM32 timer configuration
 - Servo PWM control
 - Motor PWM control
 
 Things to prepare:
-- ensure your notebook has a functional usb port / usb convertor
-- your notebook & charger
+- Notebook & charger
+- Ensure your notebook has a functional USB port / USB converter
 
-Deadline of homework:
-- demonstrate with a main board to a software tutor @ lab3007 CYT
+Homework:
+- Demonstrate to a software tutor at CYT3007B within one week after your tutorial session
+
 ---
 
 ### Contact
