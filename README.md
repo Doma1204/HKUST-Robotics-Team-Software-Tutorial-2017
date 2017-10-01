@@ -71,7 +71,7 @@ Deadline of homework:
 ## Tutorial 2 - Timers & PWM
 
 Syllabus
-- Introduction to PWM singals
+- Introduction to PWM signals
 - STM32 timer configuration
 - Servo PWM control
 - Motor PWM control
