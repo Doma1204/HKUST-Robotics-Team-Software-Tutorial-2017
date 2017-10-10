@@ -20,8 +20,17 @@ Tutorial Enquiry: yhyim@ust.hk ```(plz also cc robotics@ust.hk)```<br>
 | Tutorial 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
 | Time | | **14:00-17:00** | 19:00-22:00 | 19:00-22:00 | **14:00-17:00** | 19:00-22:00 | 14:00-17:00 |
 | Venue | | **4219** | 2612A | 2612A | **4219** | 2612A | 2612A |
-
-```Please be noted that 2 & 5 Oct will be public holiday, so tutorials on those days is scheduled earlier```
+| | | | | | |
+| Tutorial 3 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
+| Time | | | | | 19:00-22:00 | | 14:00-17:00 |
+| Venue | | | | | 2612A | | 2612A |
+| Tutorial 3 | 15 | 16 | | | | | |
+| Time | | 19:00-22:00 | | | | | |
+| Venue | | 2612A | | | | | |
+| | | | | | |
+| Tutorial 4 | | | 17 | 18 | 19 | 20 | 21 |
+| Time | | | | 19:00-22:00 | 19:00-22:00 | 19:00-22:00 | |
+| Venue | | | | 2612A | 2612A | 2612A | |
 
 ---
 
