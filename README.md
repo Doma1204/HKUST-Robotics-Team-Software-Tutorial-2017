@@ -92,17 +92,29 @@ Things to prepare:
 Homework:
 - Demonstrate to a software tutor at CYT3007B within one week after your tutorial session
 
+## Tutorial 3 - UART
+
+ Syllabus
+ - UART in STM32F1
+ - UART in Windows
+ - Bluetooth
+ 
+ Things to prepare:
+ - Notebook & charger
+ - Install CoolTerm
+ - Ensure your notebook has a functional bluetooth module and driver.
+
 ---
 
 ### Contact
-| Tutor | Email |
-| :---: | :---: |
-| Emmett | yhyim@ust.hk |
-| Ryusuke | rsugimoto@ust.hk |
-| Christopher | pkcwongab@ust.hk |
-| Peter | hntse@ust.hk |
-| Dipsy | ycwongal@ust.hk |
-| Avin | sktse@ust.hk |
-| David | chmakac@ust.hk |
-| Pang | hwpang@ust.hk |
-| Kelly | kyyiuac@ust.hk |
+| Tutor | Email | Phone |
+| :---: | :---: | :---: |
+| Emmett | yhyim@ust.hk | 66816823 |
+| Ryusuke | rsugimoto@ust.hk | 53267494 |
+| Christopher | pkcwongab@ust.hk | 69009166 |
+| Peter | hntse@ust.hk | 54070344 |
+| Dipsy | ycwongal@ust.hk | 63182818 |
+| Avin | sktse@ust.hk | 63246884 |
+| David | chmakac@ust.hk | 63537519 |
+| Pang | hwpang@ust.hk | 66728615 |
+| Kelly | kyyiuac@ust.hk | 97008581 |
