@@ -21,20 +21,21 @@ uint16_t colourImage[ImageLength][ImageWidth];
 //register default
 OV7725REG cameraConfig[] =
 {
+	{COM2,			0x03},
 	{CLKRC,     0x00},
 	{COM7,      0x46},
 	//default value for QVGA
-	//{HSTART,    0x3f},
-	//{HSIZE,     0x50},
-	//{VSTRT,     0x03},
-	//{VSIZE,     0x78},
-	//{HREF,      0x00},
+	{HSTART,    0x3f},
+	{HSIZE,     0x50},
+	{VSTRT,     0x03},
+	{VSIZE,     0x78},
+	{HREF,      0x00},
 	//tuned value for 80*60	
-	{HSTART,    0x20},
-	{HSIZE,     ImageWidth>>2},
-	{VSTRT,     0x2f},
-	{VSIZE,     ImageLength>>1},
-	{HREF,      (ImageLength&0x01<<2)|(ImageWidth&0x03)},
+	//{HSTART,    0x20},
+	//{HSIZE,     ImageWidth>>2},
+	//{VSTRT,     0x2f},
+	//{VSIZE,     ImageLength>>1},
+	//{HREF,      (ImageLength&0x01<<2)|(ImageWidth&0x03)},
 	{HOutSize,  ImageWidth>>2},
 	{VOutSize,  ImageLength>>1},
 	{EXHCH,     (ImageLength&0x01<<2)|(ImageWidth&0x03)},
@@ -44,12 +45,14 @@ OV7725REG cameraConfig[] =
 	{TGT_B,     0x7f},
 	{FixGain,   0x09},
 	{AWB_Ctrl0, 0xe0},
-	{DSP_Ctrl1, 0xff},
-	{DSP_Ctrl2, 0x20},
+	{DSP_Ctrl1, 0xbf},
+	{DSP_Ctrl2, 0x0c},
 	{DSP_Ctrl3,	0x00},
 	{DSP_Ctrl4, 0x00},
+	{DSPAuto,		0xff},
+	{SCAL0,			0x0a},
 	{COM8,		  0xf0},
-	{COM4,		  0x81},
+	{COM4,		  0xc1},
 	{COM6,		  0xc5},
 	{COM9,		  0x21},
 	{BDBase,	  0xFF},
@@ -76,19 +79,20 @@ OV7725REG cameraConfig[] =
 	{CNST,		  0x25},
 	{USAT,		  0x65},
 	{VSAT,		  0x65},
-	{UVADJ0,	  0x81},
+	{UVADJ0,	  0x11},
+	{UVADJ1,	  0x02},
 	{SDE,		    0x06},
-	{GAM1,		  0x0c},
-	{GAM2,		  0x16},
-	{GAM3,		  0x2a},
-	{GAM4,		  0x4e},
-	{GAM5,		  0x61},
-	{GAM6,		  0x6f},
-	{GAM7,		  0x7b},
-	{GAM8,		  0x86},
-	{GAM9,		  0x8e},
-	{GAM10,		  0x97},
-	{GAM11,		  0xa4},
+	{GAM1,		  0x0e},
+	{GAM2,		  0x1a},
+	{GAM3,		  0x31},
+	{GAM4,		  0x5a},
+	{GAM5,		  0x69},
+	{GAM6,		  0x75},
+	{GAM7,		  0x7e},
+	{GAM8,		  0x88},
+	{GAM9,		  0x8f},
+	{GAM10,		  0x96},
+	{GAM11,		  0xa3},
 	{GAM12,		  0xaf},
 	{GAM13,		  0xc5},
 	{GAM14,		  0xd7},
@@ -100,6 +104,7 @@ OV7725REG cameraConfig[] =
 	{DM_LNL,	  0x00},
 	{BDBase,	  0x99},
 	{BDMStep,	  0x03},
+	{LC_YC,			0x00},
 	{LC_RADI,	  0x00},
 	{LC_COEF,	  0x13},
 	{LC_XC,		  0x08},
@@ -108,6 +113,9 @@ OV7725REG cameraConfig[] =
 	{LC_CTR,	  0x05},
 	{COM3,		  0xd0},
 	{COM5,			0xf5},
+	{SIGN,			0x06},
+	{REG16,			0x00},
+	{COM10,			0x00}
 };
 
 uint8_t cameraConfigLength = sizeof(cameraConfig)/sizeof(cameraConfig[0]);
@@ -365,7 +373,8 @@ uint8_t cameraInit(ImageType type)
 	//fifo init
 	//	GPIO
 	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOC,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOC|RCC_APB2Periph_AFIO,ENABLE);
+	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);
 	GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	//		OE - PA15
@@ -466,7 +475,12 @@ uint8_t cameraCaptureFrame(void)
 	return SUCCESS;
 }
 
-inline uint16_t GreyScale8bitTo16bit(uint8_t input)
+inline uint16_t flipRB(uint16_t input)
+{
+	return (input>>11)|(input<<11)|(input&0x07E0);
+}
+
+inline uint16_t greyScale8bitTo16bit(uint8_t input)
 {
 	return ((input << 8) & 0xF800) | ((input << 3) & 0x07E0) | (input >> 3);
 }
@@ -482,16 +496,27 @@ void cameraTestTftDisplay(void)
 	if(camState == 2)
 	{
 		FIFO_READY;
-		tft_clear();
+		tft_clear_line(9);
 		uint32_t t=get_ticks();
+		tft_write_command(0x2a);		// Column addr set
+		tft_write_data(0x00);
+		tft_write_data(0x1A); 				// X START
+		tft_write_data(0x00);
+		tft_write_data(0x19+ImageWidth); 			// X END
+		tft_write_command(0x2b);		// Row addr set
+		tft_write_data(0x00);
+		tft_write_data(0x19);				// Y START
+		tft_write_data(0x00);
+		tft_write_data(0x19+ImageLength);			// Y END
+		tft_write_command(0x2c); 		// write to RAM*/
 		for(uint16_t j=0;j<ImageLength;j++)
 			for(uint16_t i=0;i<ImageWidth;i++)
 			{
-				//RGB
 				READ_FIFO_COLOUR(colourImage[j][i]);
-				tft_put_pixel(i+16,j+24,colourImage[j][i]);
+				tft_write_data(((colourImage[j][i]<<3)&0xF8)|((colourImage[j][i]>>8)&0x07));
+				tft_write_data(((colourImage[j][i]>>11))|(colourImage[j][i]&0xE0));
 			}
-		tft_prints(0,9,"%d",get_ticks() - t);
+		tft_prints(0,9,"%dms per frame",get_ticks() - t);
 		tft_update();
 		camState = 0;
 	}
