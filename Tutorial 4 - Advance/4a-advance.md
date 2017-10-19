@@ -230,11 +230,6 @@ Since this library is also a bit complex, there will only be introduction to par
 - Camera Library<br>
   1. Download ```camera.c```, ```camera.h``` and ```ov7725define.h```<br>
   2. Import the libraries to your project with the method mentioned above<br>
-- Increasing the boundary of memory<br>
-  1. Go to ```main.c```<br>
-  2. Click ```Project > Option for Target 'stm32f103rb_template'...```<br>
-  3. Change the ```Size``` for ```IRAM1``` from **0x5000** to **0xA000**<br>
-  4. Click ```OK```<br>
 
 #### cameraInit
 ```C
