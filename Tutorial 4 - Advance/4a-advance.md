@@ -62,10 +62,10 @@ typedef struct
 - Include its own header file(s)
 - You may use ```#define``` to create constant
 - You may use ```#define```, ```#ifdef```, ```#ifndef``` and ```#endif``` to do branching<br>
-In fact, it is handled by the compiler, thus the unused branches will not be compiled. Hence reducing file size.
-- Usually, there will be an initialization function<br>
+In fact, it is handled by the compiler, thus the unused branches will not be compiled. Hence reducing the file size.
+- Usually, there will be an initialize function<br>
   - Variables initialization
-  - GPIO / TIM / EXTI / NVIC or other necessary configuration
+  - GPIO / TIM / EXTI / NVIC or other necessary configurations
 - Consider what **input/output** or **read/write** functions are required
 - Consider is there anything that has to be check frequently / update procedurally<br>
 creating a ```LIBRARY_NAME_update``` function might help you
@@ -107,6 +107,7 @@ switch(buttonState)
       buttonTicks = 0;
     }
     break;
+    
   case beingHeld:
     if(!read_button(BUTTON1) && get_ticks() - buttonTicks >= 100)
     {
@@ -132,13 +133,13 @@ if(buttonState == notBeingPressed && !read_button(BUTTON1))
   buttonTicks = ticks;
   /* led control */
 }
-else if(buttonState = justBeingPressed && !read_button(BUTTON1) && get_ticks() - buttonTicks >= 500)
+else if(buttonState == justBeingPressed && !read_button(BUTTON1) && get_ticks() - buttonTicks >= 500)
 {
   buttonState = beingHeld;
   buttonTicks = ticks;
   /* led control */
 }
-else if(buttonState = beingHeld && !read_button(BUTTON1) && get_ticks() - buttonTicks >= 100)
+else if(buttonState == beingHeld && !read_button(BUTTON1) && get_ticks() - buttonTicks >= 100)
 {
   buttonTicks = ticks;
   /* led control */
@@ -185,7 +186,8 @@ Where the colour is in RGB565 format(0x0000 to 0xFFFF). You can enter it directl
 
 #### tft_clear
 ```C
-void tft_clear(void); 		//clear everything on tft
+void tft_clear(void); 		//clear all character output on tft
+void tft_force_clear(void);	//clear all the output on tft
 void tft_clear_line(u8 line);	//clear one row
 ```
 Function for clearing the tft screen<br>
@@ -196,7 +198,7 @@ If ```tft_clear``` is used, it has to be called **before** any tft print functio
 ```C
 void tft_prints(u8 x, u8 y, const char * pstr, ...);
 ```
-- **x** : n-th charactor's position of a line, ranged from 0 to 15 (i.e. maximum 16 charactors per line)
+- **x** : n-th character's position of a line, ranged from 0 to 15 (i.e. maximum 16 characters per line)
 - **y** : n-th line, ranged from 0 to 9 (i.e. 10 lines in total)
 - **const char * pstr** : string output, just like how you use ```uart_tx()```
 
@@ -206,10 +208,9 @@ void tft_put_pixel(u8 x, u8 y, u16 color);
 ```
 - **x** : n-th horizontal pixel, ranged from 0 to 127 (i.e. 128 pixels per row)
 - **y** : n-th vertical pixel, ranged from 0 to 159 (i.e. 160 pixels per column)
-- **color** : colour of the pixel, also in RGB565 format
+- **color** : colour of the pixel, also in RGB565 format<br>
 
-
-***Remark1 : useful in printing camera output<br>Remark2 : if I mixed up row and column, please bear with me ***=]
+***Remark1 : useful in printing camera output<br>Remark2 : if I mixed up row and column, please bear with me =]***
 
 #### tft_update
 ```C
